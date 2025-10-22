@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Quest: Learn AI in an Hour!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">🤖 AI Quest</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Score</span>
+                    <span class="stat-value" id="score">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Level</span>
+                    <span class="stat-value" id="level">1</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Welcome Screen -->
+            <div class="screen active" id="welcomeScreen">
+                <div class="welcome-content">
+                    <h2 class="animate-fade-in">Welcome to AI Quest!</h2>
+                    <p class="subtitle animate-fade-in">Learn AI concepts in just 1 hour through fun, interactive lessons</p>
+
+                    <div class="features">
+                        <div class="feature-card animate-slide-up" style="animation-delay: 0.2s">
+                            <div class="feature-icon">🎮</div>
+                            <h3>Gamified Learning</h3>
+                            <p>Earn points and badges as you progress</p>
+                        </div>
+                        <div class="feature-card animate-slide-up" style="animation-delay: 0.4s">
+                            <div class="feature-icon">🎯</div>
+                            <h3>Interactive Lessons</h3>
+                            <p>Learn by doing, not just reading</p>
+                        </div>
+                        <div class="feature-card animate-slide-up" style="animation-delay: 0.6s">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Fast & Fun</h3>
+                            <p>Complete in about an hour</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large animate-bounce" onclick="startQuest()">
+                        Start Your Quest! 🚀
+                    </button>
+                </div>
+            </div>
+
+            <!-- Module Screen Template -->
+            <div class="screen" id="moduleScreen">
+                <div class="module-content">
+                    <div class="module-header">
+                        <span class="module-number" id="moduleNumber"></span>
+                        <h2 id="moduleTitle"></h2>
+                    </div>
+
+                    <div class="lesson-content" id="lessonContent"></div>
+
+                    <div class="module-actions">
+                        <button class="btn btn-secondary" id="prevBtn" onclick="previousModule()">← Previous</button>
+                        <button class="btn btn-primary" id="nextBtn" onclick="nextModule()">Next →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Completion Screen -->
+            <div class="screen" id="completionScreen">
+                <div class="completion-content">
+                    <div class="celebration">🎉</div>
+                    <h2>Congratulations!</h2>
+                    <p class="subtitle">You've completed AI Quest!</p>
+
+                    <div class="final-stats">
+                        <div class="final-stat">
+                            <div class="final-stat-value" id="finalScore">0</div>
+                            <div class="final-stat-label">Total Score</div>
+                        </div>
+                        <div class="final-stat">
+                            <div class="final-stat-value" id="badgesEarned">0</div>
+                            <div class="final-stat-label">Badges Earned</div>
+                        </div>
+                    </div>
+
+                    <div class="badges-display" id="badgesDisplay"></div>
+
+                    <div class="completion-message">
+                        <p>You now understand the core concepts of AI! Share your achievement:</p>
+                        <button class="btn btn-primary" onclick="restartQuest()">Start Over 🔄</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Badges Popup -->
+        <div class="badge-popup" id="badgePopup">
+            <div class="badge-popup-content">
+                <div class="badge-popup-icon" id="badgeIcon"></div>
+                <h3 id="badgeTitle"></h3>
+                <p id="badgeDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
