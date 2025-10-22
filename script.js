@@ -12,7 +12,10 @@ const badges = {
     starter: { emoji: '🌟', name: 'AI Explorer', description: 'Started your AI journey!' },
     learner: { emoji: '📚', name: 'Quick Learner', description: 'Completed 3 modules!' },
     network: { emoji: '🧠', name: 'Neural Navigator', description: 'Mastered Neural Networks!' },
-    trainer: { emoji: '🎯', name: 'AI Trainer', description: 'Trained your first AI!' },
+    transformer: { emoji: '⚡', name: 'Transformer Master', description: 'Understood attention mechanisms!' },
+    llm: { emoji: '🤖', name: 'LLM Expert', description: 'Mastered Large Language Models!' },
+    rag: { emoji: '📖', name: 'RAG Specialist', description: 'Built a RAG system!' },
+    agent: { emoji: '🎯', name: 'Agent Architect', description: 'Designed AI agents!' },
     expert: { emoji: '🏆', name: 'AI Expert', description: 'Completed all modules!' },
     perfect: { emoji: '💎', name: 'Perfect Score', description: 'Got perfect scores!' }
 };
@@ -20,38 +23,56 @@ const badges = {
 // Modules Content
 const modules = [
     {
-        title: 'What is AI?',
+        title: 'AI & Machine Learning Fundamentals',
         content: () => `
             <div class="lesson-text">
-                <h3>Welcome to the World of Artificial Intelligence!</h3>
-                <p>Imagine a computer that can learn, think, and make decisions just like you do! That's what AI is all about.</p>
+                <h3>The AI Landscape</h3>
+                <p>AI encompasses multiple paradigms, but modern AI is dominated by <strong>Machine Learning</strong> - systems that improve through experience.</p>
 
-                <p><strong>AI (Artificial Intelligence)</strong> is when we teach computers to do tasks that usually require human intelligence, like:</p>
-                <ul style="margin: 20px 0; padding-left: 30px; line-height: 2;">
-                    <li>🗣️ Understanding and speaking languages</li>
-                    <li>👁️ Recognizing faces and objects in photos</li>
-                    <li>🎮 Playing games and solving puzzles</li>
-                    <li>🚗 Driving cars autonomously</li>
-                    <li>🎵 Creating music and art</li>
-                </ul>
+                <div class="tech-box">
+                    <h4>📊 Three Main Types of ML:</h4>
+                    <div class="ml-types">
+                        <div class="ml-type">
+                            <strong>Supervised Learning</strong>
+                            <p>Training with labeled data (input → output pairs)</p>
+                            <code>Examples: Classification, Regression</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Unsupervised Learning</strong>
+                            <p>Finding patterns in unlabeled data</p>
+                            <code>Examples: Clustering, Dimensionality Reduction</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Reinforcement Learning</strong>
+                            <p>Learning through rewards and penalties</p>
+                            <code>Examples: Game AI, Robotics</code>
+                        </div>
+                    </div>
+                </div>
 
-                <p>Think of AI as a really smart assistant that gets better the more it practices!</p>
+                <div class="code-example">
+                    <h4>💻 Conceptual ML Pipeline:</h4>
+                    <pre><code>Data Collection → Preprocessing → Feature Engineering
+    ↓
+Model Training → Validation → Hyperparameter Tuning
+    ↓
+Testing → Deployment → Monitoring</code></pre>
+                </div>
+
+                <p><strong>Key Insight:</strong> The quality of your data matters more than the sophistication of your algorithm. "Garbage in, garbage out" is a fundamental principle in ML.</p>
             </div>
 
             <div class="quiz-container">
-                <div class="quiz-question">Quick Check: Which of these is an example of AI?</div>
+                <div class="quiz-question">Which learning type would you use for training a chess AI that learns by playing against itself?</div>
                 <div class="quiz-options" id="quiz1">
                     <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 0)">
-                        A regular calculator that adds numbers
+                        Supervised Learning
+                    </div>
+                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 0)">
+                        Unsupervised Learning
                     </div>
                     <div class="quiz-option" data-correct="true" onclick="selectQuizOption(this, 0)">
-                        A voice assistant that understands and responds to your questions
-                    </div>
-                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 0)">
-                        A digital clock that shows the time
-                    </div>
-                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 0)">
-                        A light switch that turns on and off
+                        Reinforcement Learning
                     </div>
                 </div>
                 <div class="quiz-feedback" id="feedback1"></div>
@@ -59,239 +80,907 @@ const modules = [
         `
     },
     {
-        title: 'Machine Learning Magic',
+        title: 'Deep Learning & Neural Networks',
         content: () => `
             <div class="lesson-text">
-                <h3>How Do Machines Learn?</h3>
-                <p>Machine Learning is like teaching a child through examples. Instead of programming every rule, we show the computer lots of examples, and it figures out the patterns!</p>
+                <h3>The Power of Deep Neural Networks</h3>
+                <p>Deep Learning uses multi-layered neural networks to learn hierarchical representations of data. Each layer learns increasingly abstract features.</p>
 
-                <div style="background: #dbeafe; padding: 20px; border-radius: 12px; margin: 20px 0;">
-                    <h4>📖 The Learning Process:</h4>
-                    <p><strong>1. Data:</strong> We give the computer lots of examples (like thousands of cat photos)</p>
-                    <p><strong>2. Training:</strong> The computer studies these examples to find patterns</p>
-                    <p><strong>3. Testing:</strong> We check if it learned correctly with new examples</p>
-                    <p><strong>4. Prediction:</strong> Now it can identify new things it's never seen before!</p>
+                <div class="tech-box">
+                    <h4>🧠 Neural Network Architecture:</h4>
+                    <p><strong>Forward Propagation:</strong> Data flows through layers, each applying transformations:</p>
+                    <code>output = activation(weights × input + bias)</code>
+
+                    <p style="margin-top: 15px;"><strong>Backpropagation:</strong> Error gradients flow backward to update weights via gradient descent:</p>
+                    <code>∂Loss/∂w → Update weights to minimize loss</code>
                 </div>
 
-                <p>Think of it like learning to ride a bike - the more you practice, the better you get!</p>
+                <div class="interactive-demo">
+                    <h4 style="text-align: center; margin-bottom: 20px;">🔮 Neural Network Visualization</h4>
+
+                    <div class="neural-network" id="neuralNet">
+                        <div class="network-layer">
+                            <div style="text-align: center; margin-bottom: 10px; font-weight: 600; font-size: 12px;">Input Layer<br/>(Features)</div>
+                            <div class="neuron" onclick="activateNeuron(this, 0)" title="Pixel values, text embeddings, etc.">x₁</div>
+                            <div class="neuron" onclick="activateNeuron(this, 0)">x₂</div>
+                            <div class="neuron" onclick="activateNeuron(this, 0)">x₃</div>
+                        </div>
+                        <div class="network-layer">
+                            <div style="text-align: center; margin-bottom: 10px; font-weight: 600; font-size: 12px;">Hidden Layer 1<br/>(Low-level)</div>
+                            <div class="neuron" onclick="activateNeuron(this, 1)" title="Edges, textures">h₁</div>
+                            <div class="neuron" onclick="activateNeuron(this, 1)">h₂</div>
+                            <div class="neuron" onclick="activateNeuron(this, 1)">h₃</div>
+                            <div class="neuron" onclick="activateNeuron(this, 1)">h₄</div>
+                        </div>
+                        <div class="network-layer">
+                            <div style="text-align: center; margin-bottom: 10px; font-weight: 600; font-size: 12px;">Hidden Layer 2<br/>(High-level)</div>
+                            <div class="neuron" onclick="activateNeuron(this, 2)" title="Shapes, patterns">h₅</div>
+                            <div class="neuron" onclick="activateNeuron(this, 2)">h₆</div>
+                            <div class="neuron" onclick="activateNeuron(this, 2)">h₇</div>
+                        </div>
+                        <div class="network-layer">
+                            <div style="text-align: center; margin-bottom: 10px; font-weight: 600; font-size: 12px;">Output<br/>(Predictions)</div>
+                            <div class="neuron" onclick="activateNeuron(this, 3)">ŷ₁</div>
+                            <div class="neuron" onclick="activateNeuron(this, 3)">ŷ₂</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px; color: #64748b; font-size: 14px;">
+                        Each layer extracts more abstract features. Click neurons to see activation flow!
+                    </p>
+                </div>
+
+                <div class="tech-box" style="margin-top: 20px;">
+                    <h4>🎯 Common Activation Functions:</h4>
+                    <ul style="line-height: 2;">
+                        <li><strong>ReLU:</strong> max(0, x) - Most common, prevents vanishing gradients</li>
+                        <li><strong>Sigmoid:</strong> 1/(1+e⁻ˣ) - Outputs between 0 and 1</li>
+                        <li><strong>Tanh:</strong> (eˣ-e⁻ˣ)/(eˣ+e⁻ˣ) - Outputs between -1 and 1</li>
+                        <li><strong>Softmax:</strong> eˣⁱ/Σeˣʲ - For multi-class classification</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="interactive-demo">
-                <h4 style="text-align: center; margin-bottom: 20px;">🎯 Interactive Demo: Teach AI to Recognize Shapes!</h4>
-                <p style="text-align: center; margin-bottom: 20px;">Click on all the circles to train the AI:</p>
-                <div class="training-images" id="shapeTraining">
-                    <div class="training-image" data-shape="circle" onclick="selectShape(this)">⭕</div>
-                    <div class="training-image" data-shape="square" onclick="selectShape(this)">⬜</div>
-                    <div class="training-image" data-shape="circle" onclick="selectShape(this)">🔵</div>
-                    <div class="training-image" data-shape="triangle" onclick="selectShape(this)">🔺</div>
-                    <div class="training-image" data-shape="circle" onclick="selectShape(this)">⚪</div>
-                    <div class="training-image" data-shape="square" onclick="selectShape(this)">🟦</div>
+            <div class="quiz-container">
+                <div class="quiz-question">What is the primary purpose of backpropagation?</div>
+                <div class="quiz-options" id="quiz2">
+                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 1)">
+                        To pass data forward through the network
+                    </div>
+                    <div class="quiz-option" data-correct="true" onclick="selectQuizOption(this, 1)">
+                        To compute gradients and update weights to minimize loss
+                    </div>
+                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 1)">
+                        To normalize the input data
+                    </div>
                 </div>
-                <button class="btn btn-primary" onclick="checkShapeTraining()" id="checkShapesBtn" disabled>Check My Selection</button>
-                <div id="shapeResult"></div>
+                <div class="quiz-feedback" id="feedback2"></div>
             </div>
         `
     },
     {
-        title: 'Neural Networks Unveiled',
+        title: 'Transformers & Attention Mechanisms',
         content: () => `
             <div class="lesson-text">
-                <h3>What Are Neural Networks?</h3>
-                <p>Neural Networks are inspired by how our brains work! Just like your brain has billions of neurons working together, artificial neural networks have layers of "digital neurons" that process information.</p>
+                <h3>The Transformer Revolution</h3>
+                <p>Introduced in the 2017 paper "Attention Is All You Need", transformers revolutionized AI by using <strong>self-attention</strong> mechanisms instead of recurrence.</p>
 
-                <div style="background: #fef3c7; padding: 20px; border-radius: 12px; margin: 20px 0;">
-                    <h4>🧠 How Neural Networks Work:</h4>
-                    <p><strong>Input Layer:</strong> Receives the data (like pixels of an image)</p>
-                    <p><strong>Hidden Layers:</strong> Process and find patterns (the "thinking" part)</p>
-                    <p><strong>Output Layer:</strong> Gives the final answer (like "This is a cat!")</p>
+                <div class="tech-box">
+                    <h4>⚡ How Self-Attention Works:</h4>
+                    <p>For each word, the model learns to "attend" to other relevant words in the sequence:</p>
+
+                    <div class="attention-demo" style="background: #f8fafc; padding: 20px; border-radius: 12px; margin: 15px 0;">
+                        <p style="text-align: center; font-size: 18px; margin-bottom: 15px;">
+                            <span class="word" onclick="highlightAttention(0)">The</span>
+                            <span class="word" onclick="highlightAttention(1)">cat</span>
+                            <span class="word" onclick="highlightAttention(2)">sat</span>
+                            <span class="word" onclick="highlightAttention(3)">on</span>
+                            <span class="word" onclick="highlightAttention(4)">the</span>
+                            <span class="word" onclick="highlightAttention(5)">mat</span>
+                        </p>
+                        <p style="text-align: center; font-size: 14px; color: #64748b;">Click words to see attention weights!</p>
+                        <div id="attentionResult" style="margin-top: 15px; text-align: center; font-weight: 600;"></div>
+                    </div>
+
+                    <div class="code-example">
+                        <h4>🔢 Attention Formula:</h4>
+                        <pre><code>Q = Query (what I'm looking for)
+K = Key (what I have to offer)
+V = Value (actual information)
+
+Attention(Q,K,V) = softmax(QKᵀ/√dₖ) × V</code></pre>
+                    </div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🏗️ Transformer Architecture:</h4>
+                    <div class="ml-types">
+                        <div class="ml-type">
+                            <strong>Encoder</strong>
+                            <p>Processes input sequence</p>
+                            <code>Multi-Head Attention → FFN</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Decoder</strong>
+                            <p>Generates output sequence</p>
+                            <code>Masked Attention → Cross-Attention → FFN</code>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px;"><strong>Key Innovation:</strong> Parallel processing (vs sequential in RNNs) enables training on massive datasets efficiently.</p>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🌟 Why Transformers Won:</h4>
+                    <ul style="line-height: 2;">
+                        <li>✅ <strong>Parallelization:</strong> Process all tokens simultaneously</li>
+                        <li>✅ <strong>Long-range dependencies:</strong> Capture relationships across entire sequences</li>
+                        <li>✅ <strong>Scalability:</strong> Performance improves with model size and data</li>
+                        <li>✅ <strong>Transfer learning:</strong> Pre-train once, fine-tune for many tasks</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="interactive-demo">
-                <h4 style="text-align: center; margin-bottom: 20px;">🔮 Interactive Neural Network</h4>
-                <p style="text-align: center; margin-bottom: 20px;">Click the neurons to see how information flows through the network!</p>
-
-                <div class="neural-network" id="neuralNet">
-                    <div class="network-layer">
-                        <div style="text-align: center; margin-bottom: 10px; font-weight: 600;">Input</div>
-                        <div class="neuron" onclick="activateNeuron(this, 0)">I1</div>
-                        <div class="neuron" onclick="activateNeuron(this, 0)">I2</div>
-                        <div class="neuron" onclick="activateNeuron(this, 0)">I3</div>
-                    </div>
-                    <div class="network-layer">
-                        <div style="text-align: center; margin-bottom: 10px; font-weight: 600;">Hidden</div>
-                        <div class="neuron" onclick="activateNeuron(this, 1)">H1</div>
-                        <div class="neuron" onclick="activateNeuron(this, 1)">H2</div>
-                        <div class="neuron" onclick="activateNeuron(this, 1)">H3</div>
-                        <div class="neuron" onclick="activateNeuron(this, 1)">H4</div>
-                    </div>
-                    <div class="network-layer">
-                        <div style="text-align: center; margin-bottom: 10px; font-weight: 600;">Output</div>
-                        <div class="neuron" onclick="activateNeuron(this, 2)">O1</div>
-                        <div class="neuron" onclick="activateNeuron(this, 2)">O2</div>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 20px; color: #64748b;">Each neuron passes information to the next layer, working together to make a decision!</p>
-            </div>
-
-            <div class="quiz-container" style="margin-top: 30px;">
-                <div class="quiz-question">Which layer does the "thinking" or processing?</div>
+            <div class="quiz-container">
+                <div class="quiz-question">What is the main advantage of transformers over RNNs?</div>
                 <div class="quiz-options" id="quiz3">
-                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 2)">Input Layer</div>
-                    <div class="quiz-option" data-correct="true" onclick="selectQuizOption(this, 2)">Hidden Layers</div>
-                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 2)">Output Layer</div>
+                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 2)">
+                        Transformers use less memory
+                    </div>
+                    <div class="quiz-option" data-correct="true" onclick="selectQuizOption(this, 2)">
+                        Transformers can process sequences in parallel, making training much faster
+                    </div>
+                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 2)">
+                        Transformers are simpler to implement
+                    </div>
                 </div>
                 <div class="quiz-feedback" id="feedback3"></div>
             </div>
         `
     },
     {
-        title: 'Training Your AI',
+        title: 'LLMs, Embeddings & Vector Databases',
         content: () => `
             <div class="lesson-text">
-                <h3>How Do We Train AI?</h3>
-                <p>Training AI is like being a teacher! You need to:</p>
-                <ul style="margin: 20px 0; padding-left: 30px; line-height: 2;">
-                    <li>📊 <strong>Collect Data:</strong> Gather lots of examples (the more, the better!)</li>
-                    <li>🏷️ <strong>Label Data:</strong> Tell the AI what each example is</li>
-                    <li>🎯 <strong>Train:</strong> Let the AI study and learn from the examples</li>
-                    <li>✅ <strong>Validate:</strong> Test it on new examples to see if it learned correctly</li>
-                    <li>🔧 <strong>Improve:</strong> Adjust and retrain to make it better</li>
-                </ul>
+                <h3>Large Language Models (LLMs)</h3>
+                <p>LLMs like GPT, Claude, and Llama are transformer models trained on vast text corpora. They learn statistical patterns of language and develop emergent capabilities.</p>
 
-                <div style="background: #d1fae5; padding: 20px; border-radius: 12px; margin: 20px 0;">
-                    <h4>💡 Fun Fact:</h4>
-                    <p>Training a large AI model can take weeks and use as much electricity as several homes use in a year! That's why we need good data and smart algorithms.</p>
+                <div class="tech-box">
+                    <h4>📏 Understanding Embeddings</h4>
+                    <p>Embeddings convert text into high-dimensional vectors that capture semantic meaning. Similar concepts have similar vectors.</p>
+
+                    <div class="embedding-demo">
+                        <h4 style="text-align: center; margin: 20px 0;">🎯 Semantic Similarity Demo</h4>
+                        <div class="embedding-examples">
+                            <div class="embedding-pair">
+                                <div class="embed-word">King</div>
+                                <div class="similarity-bar" style="width: 90%;">0.90</div>
+                                <div class="embed-word">Queen</div>
+                            </div>
+                            <div class="embedding-pair">
+                                <div class="embed-word">King</div>
+                                <div class="similarity-bar" style="width: 75%;">0.75</div>
+                                <div class="embed-word">Monarch</div>
+                            </div>
+                            <div class="embedding-pair">
+                                <div class="embed-word">King</div>
+                                <div class="similarity-bar" style="width: 15%;">0.15</div>
+                                <div class="embed-word">Pizza</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin-top: 15px; font-size: 14px; color: #64748b;">
+                            Cosine similarity between word embeddings (1 = identical, 0 = unrelated)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>💻 Using Embeddings in Code:</h4>
+                    <pre><code>// Generate embeddings
+const embedding = await model.embed("Hello world");
+// Returns: [0.23, -0.45, 0.67, ...] (1536 dimensions)
+
+// Find similar items using cosine similarity
+similarity = dot(vec1, vec2) / (norm(vec1) * norm(vec2))</code></pre>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🗄️ Vector Databases</h4>
+                    <p>Specialized databases that store and efficiently search high-dimensional embeddings:</p>
+                    <ul style="line-height: 2; margin-top: 10px;">
+                        <li><strong>Pinecone, Weaviate, Chroma:</strong> Purpose-built vector DBs</li>
+                        <li><strong>pgvector:</strong> PostgreSQL extension for vectors</li>
+                        <li><strong>FAISS:</strong> Facebook's similarity search library</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Use Case:</strong> Semantic search - find documents by meaning, not just keywords!</p>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4>🎮 Interactive: Match Semantic Queries</h4>
+                    <p style="margin-bottom: 15px;">Which document would an embedding-based search return for: <strong>"How do I reset my password?"</strong></p>
+                    <div class="quiz-options" id="embedQuiz">
+                        <div class="quiz-option" data-correct="false" onclick="selectEmbedOption(this)">
+                            Document about "Password encryption algorithms"
+                        </div>
+                        <div class="quiz-option" data-correct="true" onclick="selectEmbedOption(this)">
+                            Document titled "Account Recovery Guide"
+                        </div>
+                        <div class="quiz-option" data-correct="false" onclick="selectEmbedOption(this)">
+                            Document about "Creating strong passwords"
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="embedFeedback"></div>
                 </div>
             </div>
 
-            <div class="training-game">
-                <h4 style="margin-bottom: 20px;">🎮 Mini Game: Be an AI Trainer!</h4>
-                <p style="margin-bottom: 20px;">You're training an AI to recognize fruits. Select all the images that show <strong id="targetFruit">apples</strong>:</p>
-
-                <div class="training-images" id="fruitTraining">
-                    <div class="training-image" data-fruit="apple" onclick="selectFruit(this)">🍎</div>
-                    <div class="training-image" data-fruit="banana" onclick="selectFruit(this)">🍌</div>
-                    <div class="training-image" data-fruit="apple" onclick="selectFruit(this)">🍏</div>
-                    <div class="training-image" data-fruit="orange" onclick="selectFruit(this)">🍊</div>
-                    <div class="training-image" data-fruit="apple" onclick="selectFruit(this)">🍎</div>
-                    <div class="training-image" data-fruit="grape" onclick="selectFruit(this)">🍇</div>
-                </div>
-
-                <button class="btn btn-primary" onclick="checkFruitTraining()" id="checkFruitsBtn" disabled>Train the AI!</button>
-                <div id="fruitResult"></div>
+            <div class="tech-box">
+                <h4>🎓 LLM Training Stages:</h4>
+                <ol style="line-height: 2;">
+                    <li><strong>Pre-training:</strong> Learn language patterns from massive text corpus (unsupervised)</li>
+                    <li><strong>Fine-tuning:</strong> Adapt to specific tasks with labeled data</li>
+                    <li><strong>RLHF:</strong> Reinforcement Learning from Human Feedback to align with human preferences</li>
+                </ol>
             </div>
         `
     },
     {
-        title: 'AI in Action',
+        title: 'RAG: Retrieval Augmented Generation',
         content: () => `
             <div class="lesson-text">
-                <h3>Real-World AI Applications</h3>
-                <p>AI is already all around you! Let's explore where you encounter AI in your daily life:</p>
-            </div>
+                <h3>Enhancing LLMs with External Knowledge</h3>
+                <p>RAG combines the power of LLMs with external knowledge retrieval. Instead of relying only on training data, the model can access up-to-date information.</p>
 
-            <div class="matching-game" id="matchingGame">
-                <div class="match-card" data-match="assistant" onclick="selectMatch(this)">
-                    <div class="match-card-icon">🗣️</div>
-                    <div class="match-card-title">Voice Assistants</div>
-                    <div class="match-card-desc">Siri, Alexa, Google Assistant</div>
+                <div class="tech-box">
+                    <h4>🔄 The RAG Pipeline:</h4>
+                    <div class="rag-flow">
+                        <div class="rag-step">
+                            <div class="rag-number">1</div>
+                            <h5>User Query</h5>
+                            <p>"What is RAG?"</p>
+                        </div>
+                        <div class="rag-arrow">→</div>
+                        <div class="rag-step">
+                            <div class="rag-number">2</div>
+                            <h5>Embed Query</h5>
+                            <p>Convert to vector</p>
+                        </div>
+                        <div class="rag-arrow">→</div>
+                        <div class="rag-step">
+                            <div class="rag-number">3</div>
+                            <h5>Retrieve</h5>
+                            <p>Search vector DB</p>
+                        </div>
+                        <div class="rag-arrow">→</div>
+                        <div class="rag-step">
+                            <div class="rag-number">4</div>
+                            <h5>Augment</h5>
+                            <p>Add context to query</p>
+                        </div>
+                        <div class="rag-arrow">→</div>
+                        <div class="rag-step">
+                            <div class="rag-number">5</div>
+                            <h5>Generate</h5>
+                            <p>LLM produces answer</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="match-card" data-match="recommendation" onclick="selectMatch(this)">
-                    <div class="match-card-icon">🎬</div>
-                    <div class="match-card-title">Recommendations</div>
-                    <div class="match-card-desc">Netflix, Spotify, YouTube</div>
-                </div>
-                <div class="match-card" data-match="navigation" onclick="selectMatch(this)">
-                    <div class="match-card-icon">🗺️</div>
-                    <div class="match-card-title">Smart Navigation</div>
-                    <div class="match-card-desc">Google Maps, Waze</div>
-                </div>
-                <div class="match-card" data-match="photo" onclick="selectMatch(this)">
-                    <div class="match-card-icon">📸</div>
-                    <div class="match-card-title">Photo Recognition</div>
-                    <div class="match-card-desc">Face detection, object tagging</div>
-                </div>
-                <div class="match-card" data-match="translation" onclick="selectMatch(this)">
-                    <div class="match-card-icon">🌐</div>
-                    <div class="match-card-title">Translation</div>
-                    <div class="match-card-desc">Google Translate, DeepL</div>
-                </div>
-                <div class="match-card" data-match="health" onclick="selectMatch(this)">
-                    <div class="match-card-icon">🏥</div>
-                    <div class="match-card-title">Healthcare</div>
-                    <div class="match-card-desc">Disease diagnosis, drug discovery</div>
-                </div>
-            </div>
 
-            <div class="lesson-text" style="margin-top: 30px;">
-                <p>Click on each card to learn more about how AI powers these amazing technologies!</p>
-                <div id="matchDetails" style="margin-top: 20px; padding: 20px; background: #f8fafc; border-radius: 12px; display: none;">
-                    <h4 id="matchTitle"></h4>
-                    <p id="matchDescription"></p>
-                </div>
-            </div>
-        `
-    },
-    {
-        title: 'AI Ethics & the Future',
-        content: () => `
-            <div class="lesson-text">
-                <h3>Responsible AI: The Important Stuff</h3>
-                <p>With great power comes great responsibility! As AI becomes more powerful, we need to think about using it wisely:</p>
+                <div class="code-example">
+                    <h4>💻 RAG Implementation:</h4>
+                    <pre><code>// 1. Index your documents
+const chunks = splitDocuments(documents);
+const embeddings = await embed(chunks);
+await vectorDB.insert(embeddings, chunks);
 
-                <div style="background: #fee2e2; padding: 20px; border-radius: 12px; margin: 20px 0;">
-                    <h4>⚠️ Important Considerations:</h4>
-                    <ul style="padding-left: 30px; line-height: 2;">
-                        <li><strong>Privacy:</strong> Protecting people's personal data</li>
-                        <li><strong>Bias:</strong> Making sure AI is fair to everyone</li>
-                        <li><strong>Transparency:</strong> Understanding how AI makes decisions</li>
-                        <li><strong>Safety:</strong> Ensuring AI systems are secure and reliable</li>
-                        <li><strong>Jobs:</strong> Thinking about how AI affects employment</li>
+// 2. Query with RAG
+async function ragQuery(question) {
+    // Retrieve relevant context
+    const queryEmbedding = await embed(question);
+    const relevant = await vectorDB.search(queryEmbedding, k=3);
+
+    // Augment prompt with context
+    const prompt = \`Context: \${relevant.join('\\n')}
+
+    Question: \${question}
+    Answer based on the context above:\`;
+
+    // Generate answer
+    return await llm.generate(prompt);
+}</code></pre>
+                </div>
+
+                <div class="tech-box">
+                    <h4>✨ Benefits of RAG:</h4>
+                    <ul style="line-height: 2;">
+                        <li>📚 <strong>Up-to-date information:</strong> Access current data without retraining</li>
+                        <li>🎯 <strong>Domain-specific knowledge:</strong> Use proprietary or specialized content</li>
+                        <li>🔍 <strong>Reduced hallucinations:</strong> Ground responses in real documents</li>
+                        <li>📖 <strong>Source attribution:</strong> Cite where information came from</li>
+                        <li>💰 <strong>Cost-effective:</strong> Cheaper than fine-tuning for every use case</li>
                     </ul>
                 </div>
 
-                <h4 style="margin-top: 30px;">🚀 The Future of AI:</h4>
-                <p>AI is evolving rapidly! Here's what might be coming:</p>
-                <ul style="margin: 20px 0; padding-left: 30px; line-height: 2;">
-                    <li>🏥 Better healthcare and early disease detection</li>
-                    <li>🌍 Solutions to climate change and environmental issues</li>
-                    <li>🎓 Personalized education for every student</li>
-                    <li>🚗 Self-driving vehicles and smart cities</li>
-                    <li>🔬 Scientific discoveries and space exploration</li>
-                </ul>
-            </div>
-
-            <div class="scenario-cards" id="ethicsScenarios">
-                <div class="scenario-card">
-                    <div class="scenario-title">Scenario 1: Hiring AI</div>
-                    <div class="scenario-description">A company wants to use AI to screen job applications. What should they be careful about?</div>
-                    <div class="scenario-options">
-                        <button class="scenario-btn" onclick="selectScenario(this, 'good')">Ensure the AI doesn't discriminate based on gender, race, or age</button>
-                        <button class="scenario-btn" onclick="selectScenario(this, 'bad')">Just let the AI decide without checking</button>
+                <div class="interactive-demo">
+                    <h4>🎯 Build Your RAG System</h4>
+                    <p>Put the RAG steps in the correct order:</p>
+                    <div id="ragOrderGame" class="ordering-game">
+                        <div class="order-item" draggable="true" data-order="3">
+                            🔍 Search vector database for similar documents
+                        </div>
+                        <div class="order-item" draggable="true" data-order="1">
+                            📝 User submits a question
+                        </div>
+                        <div class="order-item" draggable="true" data-order="5">
+                            🤖 LLM generates answer using retrieved context
+                        </div>
+                        <div class="order-item" draggable="true" data-order="2">
+                            🔢 Convert question to embedding vector
+                        </div>
+                        <div class="order-item" draggable="true" data-order="4">
+                            ➕ Augment prompt with retrieved documents
+                        </div>
                     </div>
+                    <button class="btn btn-primary" onclick="checkRAGOrder()" style="margin-top: 15px;">Check Order</button>
+                    <div id="ragOrderResult"></div>
                 </div>
 
-                <div class="scenario-card">
-                    <div class="scenario-title">Scenario 2: Medical AI</div>
-                    <div class="scenario-description">An AI system helps doctors diagnose diseases. What's the best approach?</div>
-                    <div class="scenario-options">
-                        <button class="scenario-btn" onclick="selectScenario(this, 'good')">Use AI as a helpful tool while doctors make final decisions</button>
-                        <button class="scenario-btn" onclick="selectScenario(this, 'bad')">Replace all doctors with AI immediately</button>
-                    </div>
-                </div>
-
-                <div class="scenario-card">
-                    <div class="scenario-title">Scenario 3: Data Privacy</div>
-                    <div class="scenario-description">You're building an AI app. How should you handle user data?</div>
-                    <div class="scenario-options">
-                        <button class="scenario-btn" onclick="selectScenario(this, 'good')">Only collect necessary data and protect it securely</button>
-                        <button class="scenario-btn" onclick="selectScenario(this, 'bad')">Collect as much data as possible and sell it</button>
-                    </div>
+                <div class="tech-box">
+                    <h4>🚀 Advanced RAG Techniques:</h4>
+                    <ul style="line-height: 2;">
+                        <li><strong>Hybrid Search:</strong> Combine vector search with keyword search (BM25)</li>
+                        <li><strong>Re-ranking:</strong> Use a separate model to re-score retrieved documents</li>
+                        <li><strong>Query Expansion:</strong> Generate multiple query variants for better recall</li>
+                        <li><strong>Contextual Chunking:</strong> Smart document splitting that preserves meaning</li>
+                    </ul>
                 </div>
             </div>
+        `
+    },
+    {
+        title: 'MCP: Model Context Protocol',
+        content: () => `
+            <div class="lesson-text">
+                <h3>Standardizing AI-to-System Communication</h3>
+                <p>The <strong>Model Context Protocol (MCP)</strong> is an open standard that enables LLMs to securely access external data sources and tools through a unified interface.</p>
 
-            <div id="ethicsResult" style="margin-top: 20px;"></div>
+                <div class="tech-box">
+                    <h4>🔌 What is MCP?</h4>
+                    <p>Think of MCP as "USB for AI" - a universal way for LLMs to connect to various data sources and tools without custom integrations for each one.</p>
+
+                    <div class="mcp-diagram">
+                        <div class="mcp-layer">
+                            <div class="mcp-box llm-box">🤖 LLM Client<br/><small>(Claude, GPT, etc.)</small></div>
+                        </div>
+                        <div class="mcp-arrow-down">↕️<br/>MCP Protocol</div>
+                        <div class="mcp-layer">
+                            <div class="mcp-box server-box">MCP Servers</div>
+                        </div>
+                        <div class="mcp-arrow-down">↓ ↓ ↓</div>
+                        <div class="mcp-layer mcp-sources">
+                            <div class="mcp-source">📁 Files</div>
+                            <div class="mcp-source">🗄️ Databases</div>
+                            <div class="mcp-source">🌐 APIs</div>
+                            <div class="mcp-source">🔧 Tools</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🎯 Core MCP Concepts:</h4>
+                    <div class="ml-types">
+                        <div class="ml-type">
+                            <strong>Resources</strong>
+                            <p>Data the LLM can read</p>
+                            <code>file://, db://, api://</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Prompts</strong>
+                            <p>Reusable templates</p>
+                            <code>Pre-configured workflows</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Tools</strong>
+                            <p>Functions the LLM can call</p>
+                            <code>calculate(), search(), etc.</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>💻 MCP Server Example:</h4>
+                    <pre><code>// Simple MCP server providing weather data
+import { Server } from "@modelcontextprotocol/sdk/server";
+
+const server = new Server({
+  name: "weather-server",
+  version: "1.0.0"
+});
+
+// Expose a tool
+server.addTool({
+  name: "get_weather",
+  description: "Get current weather for a location",
+  parameters: {
+    location: { type: "string", required: true }
+  },
+  handler: async (params) => {
+    const weather = await fetchWeather(params.location);
+    return { temperature: weather.temp, condition: weather.condition };
+  }
+});
+
+server.start();</code></pre>
+                </div>
+
+                <div class="tech-box">
+                    <h4>✨ MCP Benefits:</h4>
+                    <ul style="line-height: 2;">
+                        <li>🔒 <strong>Security:</strong> Controlled access with clear permissions</li>
+                        <li>🔄 <strong>Interoperability:</strong> Write once, works with any MCP client</li>
+                        <li>📦 <strong>Modularity:</strong> Mix and match data sources easily</li>
+                        <li>🚀 <strong>Rapid Development:</strong> Plug-and-play AI integrations</li>
+                        <li>🌍 <strong>Community:</strong> Growing ecosystem of MCP servers</li>
+                    </ul>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4>🎮 MCP Connection Builder</h4>
+                    <p>Match each MCP server to its best use case:</p>
+                    <div class="matching-game">
+                        <div class="match-card" data-match="filesystem" onclick="selectMCPMatch(this, 'filesystem')">
+                            <div class="match-card-icon">📁</div>
+                            <div class="match-card-title">Filesystem Server</div>
+                        </div>
+                        <div class="match-card" data-match="database" onclick="selectMCPMatch(this, 'database')">
+                            <div class="match-card-icon">🗄️</div>
+                            <div class="match-card-title">Database Server</div>
+                        </div>
+                        <div class="match-card" data-match="api" onclick="selectMCPMatch(this, 'api')">
+                            <div class="match-card-icon">🌐</div>
+                            <div class="match-card-title">API Integration Server</div>
+                        </div>
+                        <div class="match-card" data-match="git" onclick="selectMCPMatch(this, 'git')">
+                            <div class="match-card-icon">🔧</div>
+                            <div class="match-card-title">Git Server</div>
+                        </div>
+                    </div>
+                    <div id="mcpMatchResult" style="margin-top: 15px;"></div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🔮 Real-World MCP Use Cases:</h4>
+                    <ul style="line-height: 2;">
+                        <li><strong>Documentation Assistant:</strong> Query your codebase, docs, and Slack history</li>
+                        <li><strong>Data Analysis:</strong> Connect to databases, spreadsheets, and analytics platforms</li>
+                        <li><strong>Automation:</strong> Control enterprise tools (Jira, Salesforce, etc.)</li>
+                        <li><strong>Research:</strong> Access scientific databases and research papers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-question">What is the main purpose of MCP?</div>
+                <div class="quiz-options" id="quiz6">
+                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 5)">
+                        To train AI models faster
+                    </div>
+                    <div class="quiz-option" data-correct="true" onclick="selectQuizOption(this, 5)">
+                        To provide a standardized way for LLMs to access external data and tools
+                    </div>
+                    <div class="quiz-option" data-correct="false" onclick="selectQuizOption(this, 5)">
+                        To compress model weights
+                    </div>
+                </div>
+                <div class="quiz-feedback" id="feedback6"></div>
+            </div>
+        `
+    },
+    {
+        title: 'Agentic AI & AI Agents',
+        content: () => `
+            <div class="lesson-text">
+                <h3>From Chatbots to Autonomous Agents</h3>
+                <p><strong>AI Agents</strong> are systems that can perceive their environment, make decisions, and take actions to achieve goals - often with minimal human intervention.</p>
+
+                <div class="tech-box">
+                    <h4>🤖 The Agent Loop:</h4>
+                    <div class="agent-loop">
+                        <div class="agent-step">
+                            <div class="agent-icon">👀</div>
+                            <h5>Observe</h5>
+                            <p>Perceive environment & gather context</p>
+                        </div>
+                        <div class="agent-arrow">→</div>
+                        <div class="agent-step">
+                            <div class="agent-icon">🧠</div>
+                            <h5>Reason</h5>
+                            <p>Plan actions using LLM</p>
+                        </div>
+                        <div class="agent-arrow">→</div>
+                        <div class="agent-step">
+                            <div class="agent-icon">⚡</div>
+                            <h5>Act</h5>
+                            <p>Execute tools & APIs</p>
+                        </div>
+                        <div class="agent-arrow">→</div>
+                        <div class="agent-step">
+                            <div class="agent-icon">📊</div>
+                            <h5>Learn</h5>
+                            <p>Update based on feedback</p>
+                        </div>
+                        <div class="agent-arrow-back">↺ Repeat</div>
+                    </div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🏗️ Agent Architectures:</h4>
+                    <div class="ml-types">
+                        <div class="ml-type">
+                            <strong>ReAct</strong>
+                            <p>Reasoning + Acting</p>
+                            <code>Think → Act → Observe → Repeat</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Chain-of-Thought</strong>
+                            <p>Step-by-step reasoning</p>
+                            <code>Break complex tasks into steps</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Multi-Agent</strong>
+                            <p>Specialized agents collaborate</p>
+                            <code>Researcher + Coder + Reviewer</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>💻 Simple Agent Implementation:</h4>
+                    <pre><code>class Agent {
+    constructor(llm, tools) {
+        this.llm = llm;
+        this.tools = tools;
+        this.memory = [];
+    }
+
+    async run(task) {
+        while (!this.isComplete(task)) {
+            // Observe: Get current state
+            const context = this.buildContext();
+
+            // Reason: Decide next action
+            const thought = await this.llm.complete(\`
+                Task: \${task}
+                Context: \${context}
+                Available tools: \${this.tools.map(t => t.name)}
+                What should I do next?
+            \`);
+
+            // Act: Execute chosen tool
+            const action = this.parseAction(thought);
+            const result = await this.tools[action.tool](action.params);
+
+            // Learn: Update memory
+            this.memory.push({ thought, action, result });
+        }
+        return this.synthesizeResult();
+    }
+}</code></pre>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🎯 Key Agent Capabilities:</h4>
+                    <ul style="line-height: 2;">
+                        <li>🔧 <strong>Tool Use:</strong> Call functions, APIs, and external services</li>
+                        <li>💾 <strong>Memory:</strong> Maintain context across multiple interactions</li>
+                        <li>📋 <strong>Planning:</strong> Break down complex tasks into sub-tasks</li>
+                        <li>🔄 <strong>Iteration:</strong> Retry and self-correct when needed</li>
+                        <li>🎭 <strong>Multi-modal:</strong> Process text, images, audio, etc.</li>
+                    </ul>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4>🎮 Build an Agent Workflow</h4>
+                    <p>Design an agent to research and write a report. Select the tools it needs:</p>
+                    <div class="tool-selection">
+                        <div class="tool-option" onclick="toggleTool(this, true)">
+                            <input type="checkbox" /> 🔍 Web Search
+                        </div>
+                        <div class="tool-option" onclick="toggleTool(this, true)">
+                            <input type="checkbox" /> 📝 Document Writer
+                        </div>
+                        <div class="tool-option" onclick="toggleTool(this, false)">
+                            <input type="checkbox" /> 🎮 Game Controller
+                        </div>
+                        <div class="tool-option" onclick="toggleTool(this, true)">
+                            <input type="checkbox" /> 🗂️ File Manager
+                        </div>
+                        <div class="tool-option" onclick="toggleTool(this, false)">
+                            <input type="checkbox" /> 🎵 Music Player
+                        </div>
+                        <div class="tool-option" onclick="toggleTool(this, true)">
+                            <input type="checkbox" /> 📊 Data Analyzer
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="checkAgentTools()" style="margin-top: 15px;">Check Selection</button>
+                    <div id="agentToolResult"></div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🚀 Real-World Agent Applications:</h4>
+                    <ul style="line-height: 2;">
+                        <li><strong>Code Assistants:</strong> AutoGPT, Claude Code - write and debug code autonomously</li>
+                        <li><strong>Research Agents:</strong> Gather information from multiple sources, synthesize findings</li>
+                        <li><strong>Customer Service:</strong> Handle complex queries requiring multiple system lookups</li>
+                        <li><strong>DevOps:</strong> Monitor, diagnose, and fix infrastructure issues</li>
+                        <li><strong>Data Analysis:</strong> Explore datasets, generate insights, create visualizations</li>
+                    </ul>
+                </div>
+
+                <div class="tech-box">
+                    <h4>⚠️ Agent Challenges:</h4>
+                    <ul style="line-height: 2;">
+                        <li><strong>Reliability:</strong> Ensuring consistent performance across diverse tasks</li>
+                        <li><strong>Control:</strong> Balancing autonomy with human oversight</li>
+                        <li><strong>Cost:</strong> Many LLM calls can be expensive</li>
+                        <li><strong>Safety:</strong> Preventing harmful actions in open-ended environments</li>
+                    </ul>
+                </div>
+            </div>
+        `
+    },
+    {
+        title: 'Prompt Engineering & Advanced Techniques',
+        content: () => `
+            <div class="lesson-text">
+                <h3>Mastering LLM Communication</h3>
+                <p><strong>Prompt Engineering</strong> is the art and science of crafting inputs to get optimal outputs from LLMs. It's becoming a critical skill in the AI era.</p>
+
+                <div class="tech-box">
+                    <h4>🎨 Prompt Patterns:</h4>
+                    <div class="prompt-examples">
+                        <div class="prompt-card">
+                            <h5>Zero-Shot</h5>
+                            <div class="prompt-box">
+                                <code>Translate to French: "Hello world"</code>
+                            </div>
+                            <p>Direct instruction, no examples</p>
+                        </div>
+                        <div class="prompt-card">
+                            <h5>Few-Shot</h5>
+                            <div class="prompt-box">
+                                <code>Dog → Puppy<br/>Cat → Kitten<br/>Bear → ?</code>
+                            </div>
+                            <p>Learn from examples</p>
+                        </div>
+                        <div class="prompt-card">
+                            <h5>Chain-of-Thought</h5>
+                            <div class="prompt-box">
+                                <code>Let's think step by step:<br/>1. First...<br/>2. Then...</code>
+                            </div>
+                            <p>Explicit reasoning steps</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-example">
+                    <h4>💻 Advanced Prompting Techniques:</h4>
+                    <pre><code>// 1. System + User Pattern
+{
+  system: "You are an expert Python debugger.",
+  user: "Fix this code: [code]"
+}
+
+// 2. Role + Task + Format
+\`Act as a technical writer.
+Task: Explain RAG to beginners.
+Format: 3 paragraphs with examples.\`
+
+// 3. Few-Shot with Reasoning
+\`Question: What's 15% of 80?
+Reasoning: 80 × 0.15 = 12
+Answer: 12
+
+Question: What's 25% of 200?
+Reasoning: 200 × 0.25 = 50
+Answer: 50
+
+Question: What's 18% of 150?
+Reasoning:\`</code></pre>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🎯 Key Prompting Principles:</h4>
+                    <ul style="line-height: 2;">
+                        <li>✅ <strong>Be Specific:</strong> Clear instructions yield better results</li>
+                        <li>✅ <strong>Provide Context:</strong> Give background information</li>
+                        <li>✅ <strong>Use Examples:</strong> Show, don't just tell</li>
+                        <li>✅ <strong>Break Down:</strong> Complex tasks → smaller steps</li>
+                        <li>✅ <strong>Iterate:</strong> Refine prompts based on outputs</li>
+                        <li>✅ <strong>Set Constraints:</strong> Length, format, tone, etc.</li>
+                    </ul>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4>🎮 Prompt Engineering Challenge</h4>
+                    <p>Which prompt would work best for getting a structured product review summary?</p>
+                    <div class="quiz-options" id="promptQuiz">
+                        <div class="quiz-option prompt-option" data-correct="false" onclick="selectPromptOption(this)">
+                            <strong>Prompt A:</strong> "Summarize this review."
+                        </div>
+                        <div class="quiz-option prompt-option" data-correct="true" onclick="selectPromptOption(this)">
+                            <strong>Prompt B:</strong> "Analyze this product review and provide:<br/>
+                            1. Overall sentiment (positive/negative/mixed)<br/>
+                            2. Key pros (bullet points)<br/>
+                            3. Key cons (bullet points)<br/>
+                            4. Recommendation (buy/skip/maybe)"
+                        </div>
+                        <div class="quiz-option prompt-option" data-correct="false" onclick="selectPromptOption(this)">
+                            <strong>Prompt C:</strong> "Tell me about this review in a fun way!"
+                        </div>
+                    </div>
+                    <div class="quiz-feedback" id="promptFeedback"></div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🚀 Advanced Techniques:</h4>
+                    <div class="ml-types">
+                        <div class="ml-type">
+                            <strong>Constitutional AI</strong>
+                            <p>Self-critique and refinement</p>
+                            <code>Generate → Critique → Revise</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Tree of Thoughts</strong>
+                            <p>Explore multiple reasoning paths</p>
+                            <code>Branch → Evaluate → Prune</code>
+                        </div>
+                        <div class="ml-type">
+                            <strong>Meta-Prompting</strong>
+                            <p>LLM generates its own prompts</p>
+                            <code>Self-improving prompts</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>⚡ Optimization Tips:</h4>
+                    <ul style="line-height: 2;">
+                        <li><strong>Temperature:</strong> Lower (0-0.3) for factual, higher (0.7-1.0) for creative</li>
+                        <li><strong>Max Tokens:</strong> Set appropriate limits to control costs</li>
+                        <li><strong>Stop Sequences:</strong> End generation at specific markers</li>
+                        <li><strong>Top-p (Nucleus):</strong> Control diversity of word selection</li>
+                    </ul>
+                </div>
+            </div>
+        `
+    },
+    {
+        title: 'AI Ethics, Safety & the Future',
+        content: () => `
+            <div class="lesson-text">
+                <h3>Building Responsible AI Systems</h3>
+                <p>As AI becomes more powerful and autonomous, addressing ethical concerns and safety challenges is crucial for beneficial deployment.</p>
+
+                <div class="tech-box">
+                    <h4>⚠️ Key Ethical Challenges:</h4>
+                    <div class="ethics-grid">
+                        <div class="ethics-card">
+                            <div class="ethics-icon">🎯</div>
+                            <h5>Bias & Fairness</h5>
+                            <p>AI systems can perpetuate or amplify societal biases present in training data</p>
+                        </div>
+                        <div class="ethics-card">
+                            <div class="ethics-icon">🔒</div>
+                            <h5>Privacy</h5>
+                            <p>Balancing data utility with individual privacy rights</p>
+                        </div>
+                        <div class="ethics-card">
+                            <div class="ethics-icon">💼</div>
+                            <h5>Job Displacement</h5>
+                            <p>Automation may disrupt traditional employment</p>
+                        </div>
+                        <div class="ethics-card">
+                            <div class="ethics-icon">🎭</div>
+                            <h5>Transparency</h5>
+                            <p>Understanding how AI makes decisions (explainability)</p>
+                        </div>
+                        <div class="ethics-card">
+                            <div class="ethics-icon">🛡️</div>
+                            <h5>Safety & Alignment</h5>
+                            <p>Ensuring AI systems do what we intend</p>
+                        </div>
+                        <div class="ethics-card">
+                            <div class="ethics-icon">⚖️</div>
+                            <h5>Accountability</h5>
+                            <p>Who's responsible when AI causes harm?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>🛡️ AI Safety Approaches:</h4>
+                    <ul style="line-height: 2;">
+                        <li><strong>RLHF (Reinforcement Learning from Human Feedback):</strong> Align AI with human values</li>
+                        <li><strong>Red Teaming:</strong> Adversarial testing to find vulnerabilities</li>
+                        <li><strong>Constitutional AI:</strong> AI that self-critiques using ethical principles</li>
+                        <li><strong>Interpretability Research:</strong> Understanding neural network internals</li>
+                        <li><strong>Robustness Testing:</strong> Ensuring consistent behavior across edge cases</li>
+                    </ul>
+                </div>
+
+                <div class="scenario-cards" id="advancedScenarios">
+                    <div class="scenario-card">
+                        <div class="scenario-title">🏥 Scenario: AI in Healthcare</div>
+                        <div class="scenario-description">An AI model shows higher accuracy for certain demographic groups. What's the responsible approach?</div>
+                        <div class="scenario-options">
+                            <button class="scenario-btn" onclick="selectScenario(this, 'good')">Investigate the bias, collect more diverse training data, and ensure equitable performance</button>
+                            <button class="scenario-btn" onclick="selectScenario(this, 'bad')">Deploy anyway since overall accuracy is high</button>
+                        </div>
+                    </div>
+
+                    <div class="scenario-card">
+                        <div class="scenario-title">🔐 Scenario: Data Privacy</div>
+                        <div class="scenario-description">You're building an LLM that could memorize training data. How do you handle this?</div>
+                        <div class="scenario-options">
+                            <button class="scenario-btn" onclick="selectScenario(this, 'good')">Implement differential privacy, test for data regurgitation, and add safeguards</button>
+                            <button class="scenario-btn" onclick="selectScenario(this, 'bad')">Ignore it since the data was publicly available</button>
+                        </div>
+                    </div>
+
+                    <div class="scenario-card">
+                        <div class="scenario-title">🤖 Scenario: Autonomous Agents</div>
+                        <div class="scenario-description">Your AI agent can execute financial transactions. What safety measures are needed?</div>
+                        <div class="scenario-options">
+                            <button class="scenario-btn" onclick="selectScenario(this, 'good')">Implement approval workflows, transaction limits, audit logging, and kill switches</button>
+                            <button class="scenario-btn" onclick="selectScenario(this, 'bad')">Give it full autonomy to maximize efficiency</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="ethicsResult" style="margin-top: 20px;"></div>
+
+                <div class="tech-box">
+                    <h4>🚀 The Future of AI:</h4>
+                    <div class="future-timeline">
+                        <div class="timeline-item">
+                            <strong>Near-term (1-3 years)</strong>
+                            <ul>
+                                <li>Multimodal models (text, image, audio, video)</li>
+                                <li>Longer context windows (millions of tokens)</li>
+                                <li>Better reasoning and planning capabilities</li>
+                                <li>More efficient models (smaller, faster, cheaper)</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Medium-term (3-10 years)</strong>
+                            <ul>
+                                <li>Specialized AI agents in every domain</li>
+                                <li>Seamless human-AI collaboration</li>
+                                <li>AI-assisted scientific breakthroughs</li>
+                                <li>Personalized education and healthcare at scale</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Long-term (10+ years)</strong>
+                            <ul>
+                                <li>Artificial General Intelligence (AGI)?</li>
+                                <li>Solving global challenges (climate, disease, etc.)</li>
+                                <li>Fundamental questions about AI consciousness and rights</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-box">
+                    <h4>💡 Your Role in AI's Future:</h4>
+                    <p>As an AI practitioner, you can:</p>
+                    <ul style="line-height: 2;">
+                        <li>🎓 <strong>Keep Learning:</strong> AI evolves rapidly; stay curious</li>
+                        <li>🤝 <strong>Build Responsibly:</strong> Consider ethics in every project</li>
+                        <li>🗣️ <strong>Advocate:</strong> Push for transparency and safety standards</li>
+                        <li>🌍 <strong>Think Globally:</strong> Consider diverse perspectives and impacts</li>
+                        <li>🔧 <strong>Open Source:</strong> Contribute to democratizing AI</li>
+                    </ul>
+                </div>
+            </div>
         `
     }
 ];
@@ -331,8 +1020,10 @@ function nextModule() {
 
         // Award badges
         if (gameState.currentModule === 2) showBadge('learner');
-        if (gameState.currentModule === 2) showBadge('network');
-        if (gameState.currentModule === 3) showBadge('trainer');
+        if (gameState.currentModule === 2) showBadge('transformer');
+        if (gameState.currentModule === 3) showBadge('llm');
+        if (gameState.currentModule === 4) showBadge('rag');
+        if (gameState.currentModule === 6) showBadge('agent');
 
         showModule();
     } else {
@@ -349,7 +1040,7 @@ function previousModule() {
 
 function completeQuest() {
     showBadge('expert');
-    if (gameState.score >= 1000) showBadge('perfect');
+    if (gameState.score >= 1500) showBadge('perfect');
 
     hideAllScreens();
     document.getElementById('completionScreen').classList.add('active');
@@ -403,89 +1094,171 @@ function selectQuizOption(option, quizIndex) {
     if (isCorrect) {
         option.classList.add('correct');
         feedbackEl.className = 'quiz-feedback correct';
-        feedbackEl.textContent = '🎉 Correct! You\'re learning fast!';
-        addScore(50);
+        feedbackEl.textContent = '🎉 Excellent! You\'re mastering these concepts!';
+        addScore(100);
     } else {
         option.classList.add('incorrect');
         feedbackEl.className = 'quiz-feedback incorrect';
-        feedbackEl.textContent = '❌ Not quite! Check out the correct answer highlighted above.';
-        addScore(20);
+        feedbackEl.textContent = '❌ Not quite! The correct answer is highlighted above.';
+        addScore(30);
     }
 
     feedbackEl.style.display = 'block';
 }
 
-// Shape Training
-let selectedShapes = [];
-function selectShape(element) {
-    if (element.classList.contains('selected')) {
-        element.classList.remove('selected');
-        const index = selectedShapes.indexOf(element);
-        if (index > -1) selectedShapes.splice(index, 1);
-    } else {
-        element.classList.add('selected');
-        selectedShapes.push(element);
-    }
-    document.getElementById('checkShapesBtn').disabled = selectedShapes.length === 0;
+// Attention Demo
+function highlightAttention(wordIndex) {
+    const words = ['The', 'cat', 'sat', 'on', 'the', 'mat'];
+    const attentionWeights = [
+        [0.1, 0.1, 0.1, 0.1, 0.6, 0.0],  // The -> the
+        [0.1, 0.3, 0.2, 0.1, 0.1, 0.2],  // cat
+        [0.1, 0.3, 0.2, 0.2, 0.1, 0.1],  // sat
+        [0.1, 0.1, 0.1, 0.2, 0.2, 0.3],  // on
+        [0.6, 0.1, 0.1, 0.1, 0.1, 0.0],  // the -> The
+        [0.0, 0.3, 0.2, 0.2, 0.0, 0.3]   // mat
+    ];
+
+    const wordElements = document.querySelectorAll('.word');
+    wordElements.forEach((el, idx) => {
+        el.style.backgroundColor = '';
+        el.style.fontWeight = '';
+        const weight = attentionWeights[wordIndex][idx];
+        if (weight > 0.2) {
+            el.style.backgroundColor = `rgba(99, 102, 241, ${weight})`;
+            el.style.fontWeight = weight > 0.4 ? 'bold' : 'normal';
+        }
+    });
+
+    const topAttention = attentionWeights[wordIndex]
+        .map((w, i) => ({ word: words[i], weight: w }))
+        .filter(x => x.weight > 0.2)
+        .sort((a, b) => b.weight - a.weight)
+        .slice(0, 3);
+
+    document.getElementById('attentionResult').innerHTML =
+        `"${words[wordIndex]}" attends most to: ` +
+        topAttention.map(x => `<strong>${x.word}</strong> (${(x.weight * 100).toFixed(0)}%)`).join(', ');
+
+    addScore(20);
 }
 
-function checkShapeTraining() {
-    const allCircles = document.querySelectorAll('[data-shape="circle"]');
-    const correctSelections = Array.from(selectedShapes).every(el => el.dataset.shape === 'circle');
-    const allCirclesSelected = Array.from(allCircles).every(el => selectedShapes.includes(el));
+// Embedding Quiz
+function selectEmbedOption(option) {
+    const options = document.querySelectorAll('#embedQuiz .quiz-option');
+    const isCorrect = option.dataset.correct === 'true';
+    const feedbackEl = document.getElementById('embedFeedback');
 
-    const resultEl = document.getElementById('shapeResult');
-    if (correctSelections && allCirclesSelected && selectedShapes.length === allCircles.length) {
-        resultEl.innerHTML = '<div class="quiz-feedback correct">🎉 Perfect! You just trained an AI to recognize circles! This is exactly how real AI learns patterns.</div>';
+    options.forEach(opt => opt.style.pointerEvents = 'none');
+
+    if (isCorrect) {
+        option.classList.add('correct');
+        feedbackEl.className = 'quiz-feedback correct';
+        feedbackEl.textContent = '🎉 Correct! Embeddings capture semantic meaning, so "reset password" and "account recovery" are semantically similar even without shared keywords.';
         addScore(100);
-    } else if (correctSelections) {
-        resultEl.innerHTML = '<div class="quiz-feedback incorrect">👍 Good job, but you missed some circles! Try to find all of them.</div>';
-        addScore(50);
     } else {
-        resultEl.innerHTML = '<div class="quiz-feedback incorrect">❌ Oops! Make sure you only select circles. Try again!</div>';
-        addScore(20);
+        option.classList.add('incorrect');
+        feedbackEl.className = 'quiz-feedback incorrect';
+        feedbackEl.textContent = '❌ Not quite. Embedding search finds documents by meaning, not just keywords. "Account Recovery" is semantically closest to "reset password".';
+        addScore(30);
     }
-    document.getElementById('checkShapesBtn').disabled = true;
+    feedbackEl.style.display = 'block';
 }
 
-// Fruit Training
-let selectedFruits = [];
-function selectFruit(element) {
-    if (element.classList.contains('selected')) {
-        element.classList.remove('selected');
-        const index = selectedFruits.indexOf(element);
-        if (index > -1) selectedFruits.splice(index, 1);
-    } else {
-        element.classList.add('selected');
-        selectedFruits.push(element);
-    }
-    document.getElementById('checkFruitsBtn').disabled = selectedFruits.length === 0;
-}
+// RAG Order Game
+let ragOrderState = [];
+function checkRAGOrder() {
+    const items = document.querySelectorAll('#ragOrderGame .order-item');
+    const currentOrder = Array.from(items).map((item, idx) => ({
+        position: idx + 1,
+        correctOrder: parseInt(item.dataset.order)
+    }));
 
-function checkFruitTraining() {
-    const allApples = document.querySelectorAll('[data-fruit="apple"]');
-    const correctSelections = Array.from(selectedFruits).every(el => el.dataset.fruit === 'apple');
-    const allApplesSelected = Array.from(allApples).every(el => selectedFruits.includes(el));
+    const isCorrect = currentOrder.every(item => item.position === item.correctOrder);
+    const resultEl = document.getElementById('ragOrderResult');
 
-    const resultEl = document.getElementById('fruitResult');
-    if (correctSelections && allApplesSelected && selectedFruits.length === allApples.length) {
-        resultEl.innerHTML = '<div class="quiz-feedback correct">🎉 Excellent! Your AI is now trained to recognize apples! In real life, this process uses thousands of images.</div>';
+    if (isCorrect) {
+        resultEl.innerHTML = '<div class="quiz-feedback correct">🎉 Perfect! You understand the RAG pipeline flow!</div>';
         addScore(150);
-    } else if (correctSelections && allApplesSelected) {
-        resultEl.innerHTML = '<div class="quiz-feedback correct">✅ Great! You selected all the apples correctly!</div>';
-        addScore(100);
-    } else if (correctSelections) {
-        resultEl.innerHTML = '<div class="quiz-feedback incorrect">⚠️ You\'re on the right track, but make sure you get ALL the apples!</div>';
-        addScore(50);
     } else {
-        resultEl.innerHTML = '<div class="quiz-feedback incorrect">❌ Remember, you\'re training the AI to recognize apples only. Try selecting just the apples!</div>';
-        addScore(20);
+        resultEl.innerHTML = '<div class="quiz-feedback incorrect">❌ Not quite right. The order should be: Question → Embed → Search → Augment → Generate</div>';
+        addScore(50);
     }
-    document.getElementById('checkFruitsBtn').disabled = true;
+}
+
+// MCP Match
+let mcpMatched = 0;
+function selectMCPMatch(element, type) {
+    if (element.classList.contains('matched')) return;
+
+    element.classList.add('matched');
+    mcpMatched++;
+
+    const descriptions = {
+        filesystem: 'Perfect for: Reading local files, documents, and configuration files',
+        database: 'Perfect for: Querying structured data and running SQL',
+        api: 'Perfect for: Integrating with external web services',
+        git: 'Perfect for: Version control operations and code repository access'
+    };
+
+    const resultEl = document.getElementById('mcpMatchResult');
+    resultEl.innerHTML = `<div class="quiz-feedback correct">${descriptions[type]}</div>`;
+    addScore(50);
+}
+
+// Agent Tools
+let selectedTools = [];
+function toggleTool(element, isCorrect) {
+    const checkbox = element.querySelector('input');
+    checkbox.checked = !checkbox.checked;
+
+    if (checkbox.checked) {
+        selectedTools.push({ element, isCorrect });
+    } else {
+        selectedTools = selectedTools.filter(t => t.element !== element);
+    }
+}
+
+function checkAgentTools() {
+    const correctTools = selectedTools.filter(t => t.isCorrect).length;
+    const incorrectTools = selectedTools.filter(t => !t.isCorrect).length;
+    const resultEl = document.getElementById('agentToolResult');
+
+    if (correctTools === 4 && incorrectTools === 0) {
+        resultEl.innerHTML = '<div class="quiz-feedback correct">🎉 Perfect! A research agent needs: Web Search (to find info), Document Writer (to create report), File Manager (to save files), and Data Analyzer (to process findings).</div>';
+        addScore(150);
+    } else if (correctTools >= 3 && incorrectTools === 0) {
+        resultEl.innerHTML = '<div class="quiz-feedback incorrect">👍 Good! You got most of them, but think about what tools are essential for researching and writing.</div>';
+        addScore(80);
+    } else {
+        resultEl.innerHTML = '<div class="quiz-feedback incorrect">❌ Not quite. Focus on tools needed for research (search), analysis (data), and output (writing, files).</div>';
+        addScore(40);
+    }
+}
+
+// Prompt Option
+function selectPromptOption(option) {
+    const options = document.querySelectorAll('#promptQuiz .quiz-option');
+    const isCorrect = option.dataset.correct === 'true';
+    const feedbackEl = document.getElementById('promptFeedback');
+
+    options.forEach(opt => opt.style.pointerEvents = 'none');
+
+    if (isCorrect) {
+        option.classList.add('correct');
+        feedbackEl.className = 'quiz-feedback correct';
+        feedbackEl.textContent = '🎉 Excellent! Prompt B is specific, structured, and provides clear formatting instructions, which leads to consistent, useful outputs.';
+        addScore(100);
+    } else {
+        option.classList.add('incorrect');
+        feedbackEl.className = 'quiz-feedback incorrect';
+        feedbackEl.textContent = '❌ Not quite. The best prompt is specific, structured, and provides clear output formatting.';
+        addScore(30);
+    }
+    feedbackEl.style.display = 'block';
 }
 
 // Neural Network Interaction
-let activeNeurons = [0, 0, 0];
+let activeNeurons = [0, 0, 0, 0];
 function activateNeuron(element, layer) {
     element.classList.add('active');
     activeNeurons[layer]++;
@@ -495,53 +1268,8 @@ function activateNeuron(element, layer) {
     }, 1000);
 
     if (activeNeurons[layer] === 1) {
-        addScore(30);
+        addScore(25);
     }
-}
-
-// Matching Game
-const matchDetails = {
-    assistant: {
-        title: '🗣️ Voice Assistants',
-        description: 'Voice assistants use Natural Language Processing (NLP) to understand your words, context, and intent. They combine speech recognition, language understanding, and text-to-speech to have conversations with you!'
-    },
-    recommendation: {
-        title: '🎬 Recommendation Systems',
-        description: 'These AI systems analyze your watching/listening history, compare it with millions of other users, and predict what you might enjoy next. They use collaborative filtering and deep learning!'
-    },
-    navigation: {
-        title: '🗺️ Smart Navigation',
-        description: 'Navigation apps use AI to predict traffic patterns, find the fastest routes, and even estimate arrival times based on current conditions and historical data. They process real-time data from millions of users!'
-    },
-    photo: {
-        title: '📸 Photo Recognition',
-        description: 'AI can detect faces, identify objects, and even understand scenes in photos. This uses Convolutional Neural Networks (CNNs) trained on millions of images to recognize patterns!'
-    },
-    translation: {
-        title: '🌐 Translation',
-        description: 'Modern translation uses Neural Machine Translation (NMT) that understands context and nuance, not just word-for-word replacement. It learns from millions of translated documents!'
-    },
-    health: {
-        title: '🏥 Healthcare AI',
-        description: 'AI helps doctors by analyzing medical images, predicting disease risks, discovering new drugs, and personalizing treatment plans. It can spot patterns humans might miss in complex medical data!'
-    }
-};
-
-function selectMatch(element) {
-    const matchType = element.dataset.match;
-    const details = matchDetails[matchType];
-
-    // Highlight selected
-    document.querySelectorAll('.match-card').forEach(card => card.style.background = '#f8fafc');
-    element.style.background = '#dbeafe';
-
-    // Show details
-    const detailsEl = document.getElementById('matchDetails');
-    document.getElementById('matchTitle').textContent = details.title;
-    document.getElementById('matchDescription').textContent = details.description;
-    detailsEl.style.display = 'block';
-
-    addScore(30);
 }
 
 // Ethics Scenarios
@@ -553,19 +1281,23 @@ function selectScenario(button, type) {
     if (type === 'good') {
         button.classList.add('selected-good');
         ethicsScore++;
-        addScore(50);
+        addScore(100);
     } else {
         button.classList.add('selected-bad');
-        addScore(20);
+        addScore(30);
     }
 
     // Check if all scenarios completed
-    if (document.querySelectorAll('.scenario-btn[disabled]').length === 6) {
+    const totalButtons = document.querySelectorAll('.scenario-btn').length;
+    const disabledButtons = document.querySelectorAll('.scenario-btn[disabled]').length;
+
+    if (disabledButtons === totalButtons) {
         const resultEl = document.getElementById('ethicsResult');
-        if (ethicsScore === 3) {
-            resultEl.innerHTML = '<div class="quiz-feedback correct">🌟 Perfect! You understand the importance of ethical AI! You\'re ready to build a better future with AI.</div>';
+        const maxScore = totalButtons / 2;
+        if (ethicsScore === maxScore) {
+            resultEl.innerHTML = '<div class="quiz-feedback correct">🌟 Perfect! You understand the critical importance of responsible AI development. These principles will guide you in building beneficial AI systems.</div>';
         } else {
-            resultEl.innerHTML = '<div class="quiz-feedback incorrect">💭 Good try! Remember, AI should always be used responsibly to benefit humanity while protecting individual rights and fairness.</div>';
+            resultEl.innerHTML = '<div class="quiz-feedback incorrect">💭 Good effort! Remember: AI should augment human capabilities, protect individual rights, ensure fairness, and be deployed with appropriate safeguards.</div>';
         }
     }
 }
@@ -579,7 +1311,7 @@ function hideAllScreens() {
 
 function updateUI() {
     document.getElementById('score').textContent = gameState.score;
-    document.getElementById('level').textContent = Math.floor(gameState.score / 200) + 1;
+    document.getElementById('level').textContent = Math.floor(gameState.score / 300) + 1;
 }
 
 function updateProgress() {
@@ -594,6 +1326,7 @@ function addScore(points) {
     // Animate score
     const scoreEl = document.getElementById('score');
     scoreEl.style.transform = 'scale(1.3)';
+    scoreEl.style.transition = 'transform 0.3s ease';
     setTimeout(() => {
         scoreEl.style.transform = 'scale(1)';
     }, 300);
@@ -611,7 +1344,7 @@ function showBadge(badgeKey) {
     document.getElementById('badgeDescription').textContent = badge.description;
 
     popup.classList.add('show');
-    addScore(100);
+    addScore(150);
 
     setTimeout(() => {
         popup.classList.remove('show');
