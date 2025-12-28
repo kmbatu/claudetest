@@ -1,0 +1,133 @@
+{
+  "name": "sailpoint-isc-manager",
+  "displayName": "SailPoint ISC Manager",
+  "description": "Manage SailPoint Identity Security Cloud workflows and rules directly from VS Code",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:sailpointExplorer"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sailpoint.refreshExplorer",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "sailpoint.connect",
+        "title": "SailPoint: Connect to Tenant"
+      },
+      {
+        "command": "sailpoint.disconnect",
+        "title": "SailPoint: Disconnect"
+      },
+      {
+        "command": "sailpoint.openWorkflow",
+        "title": "Open Workflow"
+      },
+      {
+        "command": "sailpoint.deleteWorkflow",
+        "title": "Delete Workflow"
+      },
+      {
+        "command": "sailpoint.openRule",
+        "title": "Open Rule"
+      },
+      {
+        "command": "sailpoint.deleteRule",
+        "title": "Delete Rule"
+      },
+      {
+        "command": "sailpoint.createWorkflow",
+        "title": "SailPoint: Create New Workflow"
+      },
+      {
+        "command": "sailpoint.createRule",
+        "title": "SailPoint: Create New Rule"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sailpoint-explorer",
+          "title": "SailPoint ISC",
+          "icon": "resources/sailpoint.svg"
+        }
+      ]
+    },
+    "views": {
+      "sailpoint-explorer": [
+        {
+          "id": "sailpointExplorer",
+          "name": "Explorer"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "sailpoint.refreshExplorer",
+          "when": "view == sailpointExplorer",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "sailpoint.deleteWorkflow",
+          "when": "view == sailpointExplorer && viewItem == workflow",
+          "group": "inline"
+        },
+        {
+          "command": "sailpoint.deleteRule",
+          "when": "view == sailpointExplorer && viewItem == rule",
+          "group": "inline"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "SailPoint ISC",
+      "properties": {
+        "sailpoint.tenantUrl": {
+          "type": "string",
+          "default": "",
+          "description": "SailPoint tenant URL (e.g., https://tenant.identitynow.com)"
+        },
+        "sailpoint.clientId": {
+          "type": "string",
+          "default": "",
+          "description": "SailPoint API Client ID"
+        },
+        "sailpoint.clientSecret": {
+          "type": "string",
+          "default": "",
+          "description": "SailPoint API Client Secret"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}
