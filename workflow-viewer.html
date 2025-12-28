@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SailPoint Workflow Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .logo {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .controls {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .spinner {
+            display: none;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        .btn.loading .spinner {
+            display: inline-block;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stats {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .stats.visible {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .workflows {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .workflows.visible {
+            display: block;
+        }
+
+        .workflows h2 {
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .workflow-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .workflow-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .workflow-card:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .workflow-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .workflow-icon {
+            font-size: 1.5rem;
+        }
+
+        .workflow-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .workflow-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-enabled {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .status-disabled {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #742a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #718096;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="logo">SailPoint Workflow Viewer</h1>
+            <p>View all workflows in your Identity Security Cloud tenant</p>
+        </div>
+
+        <div class="controls">
+            <button id="fetchBtn" class="btn" onclick="fetchWorkflows()">
+                Load Workflows
+                <div class="spinner"></div>
+            </button>
+        </div>
+
+        <div id="stats" class="stats">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalCount">0</div>
+                    <div class="stat-label">Total Workflows</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="enabledCount">0</div>
+                    <div class="stat-label">Enabled</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="disabledCount">0</div>
+                    <div class="stat-label">Disabled</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="error" class="error-message"></div>
+
+        <div id="workflows" class="workflows">
+            <h2>Workflows</h2>
+            <input type="text" class="search-box" id="searchBox" placeholder="Search workflows by name..." onkeyup="filterWorkflows()">
+            <div id="workflowList" class="workflow-list"></div>
+        </div>
+    </div>
+
+    <script>
+        let allWorkflows = [];
+
+        async function fetchWorkflows() {
+            const btn = document.getElementById('fetchBtn');
+            const errorDiv = document.getElementById('error');
+            const workflowsDiv = document.getElementById('workflows');
+            const statsDiv = document.getElementById('stats');
+
+            btn.disabled = true;
+            btn.classList.add('loading');
+            errorDiv.classList.remove('visible');
+            workflowsDiv.classList.remove('visible');
+            statsDiv.classList.remove('visible');
+
+            try {
+                const response = await fetch('/api/workflows');
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(data.error || 'Failed to fetch workflows');
+                }
+
+                allWorkflows = data.workflows;
+                displayWorkflows(allWorkflows);
+                updateStats(allWorkflows);
+
+                statsDiv.classList.add('visible');
+                workflowsDiv.classList.add('visible');
+
+            } catch (error) {
+                errorDiv.textContent = `Error: ${error.message}`;
+                errorDiv.classList.add('visible');
+            } finally {
+                btn.disabled = false;
+                btn.classList.remove('loading');
+            }
+        }
+
+        function displayWorkflows(workflows) {
+            const workflowList = document.getElementById('workflowList');
+
+            if (workflows.length === 0) {
+                workflowList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔍</div>
+                        <h3>No workflows found</h3>
+                        <p>There are no workflows in your SailPoint ISC tenant, or they don't match your search criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            workflowList.innerHTML = workflows.map(workflow => {
+                const isEnabled = workflow.enabled !== false;
+                const statusClass = isEnabled ? 'status-enabled' : 'status-disabled';
+                const statusText = isEnabled ? 'Enabled' : 'Disabled';
+
+                return `
+                    <div class="workflow-card">
+                        <div class="workflow-name">
+                            <span class="workflow-icon">⚡</span>
+                            <span>${escapeHtml(workflow.name || 'Unnamed Workflow')}</span>
+                        </div>
+                        <div class="workflow-meta">
+                            <span class="status-badge ${statusClass}">${statusText}</span>
+                            ${workflow.id ? `<div class="workflow-meta-item">🆔 ${escapeHtml(workflow.id)}</div>` : ''}
+                            ${workflow.created ? `<div class="workflow-meta-item">📅 Created: ${formatDate(workflow.created)}</div>` : ''}
+                            ${workflow.modified ? `<div class="workflow-meta-item">🔄 Modified: ${formatDate(workflow.modified)}</div>` : ''}
+                            ${workflow.owner?.name ? `<div class="workflow-meta-item">👤 Owner: ${escapeHtml(workflow.owner.name)}</div>` : ''}
+                        </div>
+                        ${workflow.description ? `<div style="margin-top: 10px; color: #718096; font-size: 0.95rem;">${escapeHtml(workflow.description)}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateStats(workflows) {
+            const total = workflows.length;
+            const enabled = workflows.filter(w => w.enabled !== false).length;
+            const disabled = total - enabled;
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('enabledCount').textContent = enabled;
+            document.getElementById('disabledCount').textContent = disabled;
+        }
+
+        function filterWorkflows() {
+            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+            const filtered = allWorkflows.filter(workflow =>
+                (workflow.name && workflow.name.toLowerCase().includes(searchTerm)) ||
+                (workflow.description && workflow.description.toLowerCase().includes(searchTerm)) ||
+                (workflow.id && workflow.id.toLowerCase().includes(searchTerm))
+            );
+            displayWorkflows(filtered);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDate(dateString) {
+            try {
+                return new Date(dateString).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            } catch {
+                return dateString;
+            }
+        }
+    </script>
+</body>
+</html>
